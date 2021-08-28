@@ -84,7 +84,7 @@ void FlutterDataChannel::DataChannelSend(
   bool is_binary = type == "binary";
   if (is_binary && TypeIs<std::vector<uint8_t>>(data)) { 
     std::vector<uint8_t> buffer = GetValue<std::vector<uint8_t>>(data);
-    string binary((const char *)buffer.data(), buffer.size());
+    string binary((const char *)buffer.data(), (unsigned int)buffer.size());
     data_channel->Send(binary, true);
   } else {
     std::string str = GetValue<std::string>(data);

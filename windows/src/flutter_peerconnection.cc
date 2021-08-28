@@ -360,7 +360,7 @@ FlutterPeerConnection::mapToRtpTransceiverInit(const EncodableMap& params) {
   if (0 < streamIds.size()) {
     for (auto item : streamIds) {
       std::string id = GetValue<std::string>(item);
-      stream_ids->Add(string(id.c_str(),id.size()));
+      stream_ids->Add(string(id.c_str(), (unsigned int)id.size()));
     }
   }
   RTCRtpTransceiverDirection dir = RTCRtpTransceiverDirection::kInactive;
@@ -772,7 +772,7 @@ void FlutterPeerConnection::AddTrack(
 
   scoped_refptr<RTCStreamIds> streamids = RTCStreamIds::Create();
   for (std::string item : streamIds) {
-    streamids->Add(string(item.c_str(),item.size()));
+    streamids->Add(string(item.c_str(), (unsigned int)item.size()));
   }
   if (0 == kind.compare("audio")) {
     auto sender = pc->AddTrack((RTCAudioTrack*)track.get(), streamids);
